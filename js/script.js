@@ -1,5 +1,6 @@
 let previewContainer = document.querySelector('.products-preview');
 let previewBoxes = previewContainer.querySelectorAll('.preview');
+let addToCartClickCounter = 0;
 
 document.querySelector('.products-container').addEventListener('click', async (event) => {
   let product = event.target.closest('.product');
@@ -36,5 +37,13 @@ previewBoxes.forEach((preview) => {
   preview.querySelector('.fa-times').addEventListener('click', () => {
     preview.classList.remove('active');
     previewContainer.style.display = 'none';
+  });
+
+  // Add click event listener to the "add to cart" button
+  preview.querySelector('.cart').addEventListener('click', () => {
+    addToCartClickCounter++;
+    if (addToCartClickCounter % 10 === 0) {
+      alert('Stop clicking or buy it');
+    }
   });
 });
